@@ -43,7 +43,7 @@ namespace DoctorsOffice.Controllers
       _db.SaveChanges();
       #nullable enable
       DoctorPatient? joinEntity = _db.DoctorPatients.FirstOrDefault(join => (join.DoctorId == doctorId && join.PatientId == patient.PatientId));
-#nullable disable
+      #nullable disable
       if (joinEntity == null && doctorId != 0)
       {
         _db.DoctorPatients.Add(new DoctorPatient() { DoctorId = doctorId, PatientId = patient.PatientId });
