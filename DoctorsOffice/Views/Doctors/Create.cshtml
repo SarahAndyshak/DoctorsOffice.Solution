@@ -1,0 +1,22 @@
+@{
+  Layout = "_Layout";
+}
+
+@model DoctorsOffice.Models.Doctor
+
+<p><strong>NOTE: </strong>You need to have at least one specialty before you can add a doctor!</p>
+<p>Go to @Html.ActionLink("this page", "Create", "Specialties") to create a specialty.</p>
+
+<h4>Add a new task</h4>
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.Name)
+  @Html.TextBoxFor(model => model.Name)
+
+  @Html.LabelFor(model => model.Specialty)
+  @Html.DropDownList("SpecialtyId") 
+
+  <input type="submit" value="Add new Item" class="btn btn-default" />
+}
+<p>@Html.ActionLink("Show All Doctors", "Index")</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>

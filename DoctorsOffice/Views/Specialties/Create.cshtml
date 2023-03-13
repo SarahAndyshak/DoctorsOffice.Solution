@@ -1,0 +1,15 @@
+@{
+  Layout = "_Layout";
+}
+
+@model DoctorsOffice.Models.Specialty
+
+<h4>Add a new Specialty</h4>
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.Name)
+  @Html.TextBoxFor(model => model.Name)
+  <input type="submit" value="Add new specialty" />
+}
+<p>@Html.ActionLink("Show all specialties", "Index")</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
