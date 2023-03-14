@@ -1,6 +1,6 @@
-# Plant Collection Inventory
+# Doctor's Office Database
 
-#### By Owen Brown, Brishna Bakshev, Jackson Levine.
+#### By: Owen Brown, Brishna Bakshev, Jackson Levine, Sarah Andyshak
 
 ## Technologies Used
 
@@ -19,9 +19,9 @@ A website for managing doctor-patient relationships.
 
 #### You Will Need: 
 
-* A code editor, like VS Code
-* Git installed
-* Install .Net6 SDK
+* A code editor, such as [VS Code](https://code.visualstudio.com/)
+* [Git](https://github.com/) installed
+* [Install .Net 6 SDK:](https://www.learnhowtoprogram.com/c-and-net/getting-started-with-c/installing-c-and-net)
 
 #### Install MySQL Workbench:
 * Follow the MySqlWorkbench installation instructions [here](https://www.mysql.com/products/workbench/), open MySql Workbench and select the Local 3306 server. Then select the "Administration" tab and click on "Data Import/Restore".
@@ -57,8 +57,6 @@ No known bugs. Tests are not configured for the current format of this project.
 ## License
 Enjoy the site! If you have questions or suggestions for fixing the code, please contact me!
 
-MIT License Copyright (c) 2023 Owen Brown, Brishna Bakshev, Jackson Levine. Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+[MIT](https://github.com/git/git-scm.com/blob/main/MIT-LICENSE.txt)
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+Copyright (c) 2023 Owen Brown, Brishna Bakshev, Jackson Levine, Sarah Andyshak.

@@ -53,8 +53,7 @@ namespace DoctorsOffice.Controllers
     {
       Specialty thisSpecialty = _db.Specialties
                                 .Include(specialty => specialty.JoinEntities2)
-                                //.ThenInclude(doctor => doctor.JoinEntities)
-                                //.ThenInclude(join => join.Patient)
+                                .ThenInclude(join => join.Doctor)
                                 .FirstOrDefault(specialty => specialty.SpecialtyId == id);
       return View(thisSpecialty);
     }
