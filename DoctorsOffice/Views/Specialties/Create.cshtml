@@ -4,6 +4,9 @@
 
 @model DoctorsOffice.Models.Specialty
 
+<p>@Html.ValidationMessageFor(model => model.SpecialtyId, "", new { @class = "text-danger", @style = "font-weight: 600",})</p>
+<p>@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger", @style = "font-weight: 600",})</p>
+
 <h4>Add a new Specialty</h4>
 @using (Html.BeginForm())
 {

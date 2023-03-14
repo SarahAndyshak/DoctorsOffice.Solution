@@ -15,6 +15,12 @@
     @Html.LabelFor(model => model.Name)
     @Html.EditorFor(model => model.Name)
 
+    @Html.LabelFor(model => model.Birthdate)
+    @Html.TextBoxFor(model => model.Birthdate)
+
+    @Html.LabelFor(model => model.Phone)
+    @Html.TextBoxFor(model => model.Phone)
+
     <input type="submit" value="Save" />
 }
 

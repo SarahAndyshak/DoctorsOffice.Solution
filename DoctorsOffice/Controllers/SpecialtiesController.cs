@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using DoctorsOffice.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DoctorsOffice.Controllers
 {
@@ -51,11 +52,32 @@ namespace DoctorsOffice.Controllers
     public ActionResult Details(int id)
     {
       Specialty thisSpecialty = _db.Specialties
-                                .Include(specialty => specialty.Doctors)
-                                .ThenInclude(doctor => doctor.JoinEntities)
-                                .ThenInclude(join => join.Patient)
+                                .Include(specialty => specialty.JoinEntities2)
+                                //.ThenInclude(doctor => doctor.JoinEntities)
+                                //.ThenInclude(join => join.Patient)
                                 .FirstOrDefault(specialty => specialty.SpecialtyId == id);
       return View(thisSpecialty);
+    }
+
+    public ActionResult AddDoctor(int id)
+    {
+      Specialty thisSpecialty = _db.Specialties.FirstOrDefault(Specialties => Specialties.SpecialtyId == id);
+      ViewBag.DoctorId = new SelectList(_db.Doctors, "DoctorId", "Name");
+      return View(thisSpecialty);
+    }
+
+    [HttpPost]
+    public ActionResult AddDoctor(Specialty specialty, int doctorId)
+    {
+  #nullable enable
+      DoctorSpecialty? joinEntity = _db.DoctorSpecialties.FirstOrDefault(join => (join.DoctorId == doctorId && join.SpecialtyId == specialty.SpecialtyId));
+  #nullable disable
+      if (joinEntity == null && doctorId != 0)
+      {
+        _db.DoctorSpecialties.Add(new DoctorSpecialty() { DoctorId = doctorId, SpecialtyId = specialty.SpecialtyId });
+        _db.SaveChanges();
+      }
+      return RedirectToAction("Details", new { id = specialty.SpecialtyId });
     }
 
     public ActionResult Delete(int id)

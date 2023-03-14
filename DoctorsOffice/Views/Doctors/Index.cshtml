@@ -16,7 +16,8 @@ else
   <ul>
   @foreach(Doctor doctor in Model)
   {
-    <li>@Html.ActionLink($"{doctor.Name}", "Details", new { id = doctor.DoctorId }) | @doctor.Specialty.Name</li>
+    @* <li>@Html.ActionLink($"{doctor.Name}", "Details", new { id = doctor.DoctorId }) | @doctor.Specialty.Name</li> *@
+    <li>@Html.ActionLink($"{doctor.Name}", "Details", new { id = doctor.DoctorId }) | @doctor.JoinEntities2</li>
   }
 </ul>
 }

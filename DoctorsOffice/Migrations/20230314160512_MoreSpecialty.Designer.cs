@@ -2,6 +2,7 @@
 using DoctorsOffice.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoctorsOffice.Migrations
 {
     [DbContext(typeof(DoctorsOfficeContext))]
-    partial class DoctorsOfficeContextModelSnapshot : ModelSnapshot
+    [Migration("20230314160512_MoreSpecialty")]
+    partial class MoreSpecialty
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,10 +27,14 @@ namespace DoctorsOffice.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("SpecialtyId")
+                        .HasColumnType("int");
+
                     b.HasKey("DoctorId");
+
+                    b.HasIndex("SpecialtyId");
 
                     b.ToTable("Doctors");
                 });
@@ -52,27 +58,6 @@ namespace DoctorsOffice.Migrations
                     b.HasIndex("PatientId");
 
                     b.ToTable("DoctorPatients");
-                });
-
-            modelBuilder.Entity("DoctorsOffice.Models.DoctorSpecialty", b =>
-                {
-                    b.Property<int>("DoctorSpecialtyId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("DoctorId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SpecialtyId")
-                        .HasColumnType("int");
-
-                    b.HasKey("DoctorSpecialtyId");
-
-                    b.HasIndex("DoctorId");
-
-                    b.HasIndex("SpecialtyId");
-
-                    b.ToTable("DoctorSpecialties");
                 });
 
             modelBuilder.Entity("DoctorsOffice.Models.Patient", b =>
@@ -109,6 +94,17 @@ namespace DoctorsOffice.Migrations
                     b.ToTable("Specialties");
                 });
 
+            modelBuilder.Entity("DoctorsOffice.Models.Doctor", b =>
+                {
+                    b.HasOne("DoctorsOffice.Models.Specialty", "Specialty")
+                        .WithMany("Doctors")
+                        .HasForeignKey("SpecialtyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Specialty");
+                });
+
             modelBuilder.Entity("DoctorsOffice.Models.DoctorPatient", b =>
                 {
                     b.HasOne("DoctorsOffice.Models.Doctor", "Doctor")
@@ -128,30 +124,9 @@ namespace DoctorsOffice.Migrations
                     b.Navigation("Patient");
                 });
 
-            modelBuilder.Entity("DoctorsOffice.Models.DoctorSpecialty", b =>
-                {
-                    b.HasOne("DoctorsOffice.Models.Doctor", "Doctor")
-                        .WithMany("JoinEntities2")
-                        .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DoctorsOffice.Models.Specialty", "Specialty")
-                        .WithMany("JoinEntities2")
-                        .HasForeignKey("SpecialtyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Doctor");
-
-                    b.Navigation("Specialty");
-                });
-
             modelBuilder.Entity("DoctorsOffice.Models.Doctor", b =>
                 {
                     b.Navigation("JoinEntities");
-
-                    b.Navigation("JoinEntities2");
                 });
 
             modelBuilder.Entity("DoctorsOffice.Models.Patient", b =>
@@ -161,7 +136,7 @@ namespace DoctorsOffice.Migrations
 
             modelBuilder.Entity("DoctorsOffice.Models.Specialty", b =>
                 {
-                    b.Navigation("JoinEntities2");
+                    b.Navigation("Doctors");
                 });
 #pragma warning restore 612, 618
         }

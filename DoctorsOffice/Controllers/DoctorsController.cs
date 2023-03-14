@@ -15,15 +15,13 @@ namespace DoctorsOffice.Controllers
     {
       _db = db;
     }
-
     public ActionResult Index()
     {
-      List<Doctor> model = _db.Doctors
-                            .Include(doctor => doctor.Specialty)
-                            .ToList();
-      return View(model);
+      // List<Doctor> model = _db.Doctors
+      //                       .Include(doctor => doctor.Specialty)
+      //                       .ToList();
+      return View(_db.Doctors.ToList());
     }
-
     public ActionResult Create()
     {
       ViewBag.SpecialtyId = new SelectList(_db.Specialties, "SpecialtyId", "Name");
@@ -33,19 +31,24 @@ namespace DoctorsOffice.Controllers
     [HttpPost]
     public ActionResult Create(Doctor doctor)
     {
-      if (doctor.SpecialtyId == 0)
+      if (!ModelState.IsValid)
       {
-        return RedirectToAction("Create");
+        ViewBag.SpecialtyId = new SelectList(_db.Specialties, "SpecialtyId", "Name");
+        return View(doctor);
       }
-      _db.Doctors.Add(doctor);
-      _db.SaveChanges();
-      return RedirectToAction("Index");
+      else
+      {
+        _db.Doctors.Add(doctor);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+      }
     }
 
     public ActionResult Details(int id)
     {
       Doctor thisDoctor = _db.Doctors
-          .Include(doctor => doctor.Specialty)
+          .Include(doctor => doctor.JoinEntities2)
+          .ThenInclude(join => join.Specialty)
           .Include(doctor => doctor.JoinEntities)
           .ThenInclude(join => join.Patient)
           .FirstOrDefault(doctor => doctor.DoctorId == id);
@@ -98,6 +101,27 @@ namespace DoctorsOffice.Controllers
       if (joinEntity == null && patientId != 0)
       {
         _db.DoctorPatients.Add(new DoctorPatient() { PatientId = patientId, DoctorId = doctor.DoctorId });
+        _db.SaveChanges();
+      }
+      return RedirectToAction("Details", new { id = doctor.DoctorId });
+    }
+
+    public ActionResult AddSpecialty(int id)
+    {
+      Doctor thisDoctor = _db.Doctors.FirstOrDefault(doctor => doctor.DoctorId == id);
+      ViewBag.SpecialtyId = new SelectList(_db.Specialties, "SpecialtyId", "Name");
+      return View(thisDoctor);
+    }
+
+    [HttpPost]
+    public ActionResult AddSpecialty(Doctor doctor, int specialtyId)
+    {
+#nullable enable
+      DoctorSpecialty? joinEntity = _db.DoctorSpecialties.FirstOrDefault(join => (join.DoctorId == doctor.DoctorId && join.SpecialtyId == specialtyId));
+#nullable disable
+      if (joinEntity == null && specialtyId != 0)
+      {
+        _db.DoctorSpecialties.Add(new DoctorSpecialty() { DoctorId = doctor.DoctorId, SpecialtyId = specialtyId });
         _db.SaveChanges();
       }
       return RedirectToAction("Details", new { id = doctor.DoctorId });
