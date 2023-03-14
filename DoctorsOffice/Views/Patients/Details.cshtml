@@ -31,8 +31,10 @@ else
   </ul>
 }
 
-<p>@Html.ActionLink("Back to list of patients", "Index")</p>
-<p>@Html.ActionLink("Add an Doctor", "AddDoctor", new { id = Model.PatientId })</p>
-<p>@Html.ActionLink("Edit Patient", "Edit", new { id = Model.PatientId })</p>
-<p>@Html.ActionLink("Delete Patient", "Delete", new { id = Model.PatientId })</p>
-<p>@Html.ActionLink("Home", "Index", "Home")</p>
+<br>
+<div id="nav-links">
+  <p>@Html.ActionLink("Edit Patient", "Edit", new { id = Model.PatientId }) | @Html.ActionLink("Delete Patient", "Delete", new { id = Model.PatientId }) | @Html.ActionLink("Add a Doctor", "AddDoctor", new { id = Model.PatientId })</p>
+  <p>@Html.ActionLink("Back to List of Patients", "Index")</p>
+</div>
+
+<!-- <p>@Html.ActionLink("Home", "Index", "Home")</p> -->

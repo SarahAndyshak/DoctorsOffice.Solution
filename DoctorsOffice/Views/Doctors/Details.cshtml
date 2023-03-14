@@ -48,8 +48,9 @@ else
   </ul>
 }
 
-<p>@Html.ActionLink("Back to list of doctors", "Index")</p>
-<p>@Html.ActionLink("Edit Doctor or Specialty", "Edit", new { id = Model.DoctorId })</p>
-<p>@Html.ActionLink("Add a Patient", "AddPatient", new { id = Model.DoctorId })</p>
-<p>@Html.ActionLink("Delete Doctor", "Delete", new { id = Model.DoctorId })</p>
-<p>@Html.ActionLink("Home", "Index", "Home")</p>
+<br>
+<div id="nav-links">
+  <p>@Html.ActionLink("Edit Doctor or Specialty", "Edit", new { id = Model.DoctorId }) | @Html.ActionLink("Add a Patient", "AddPatient", new { id = Model.DoctorId }) | @Html.ActionLink("Delete Doctor", "Delete", new { id = Model.DoctorId })</p>
+  <p>@Html.ActionLink("Back to List of Doctors", "Index")</p>
+  <!-- <p>@Html.ActionLink("Home", "Index", "Home")</p> -->
+</div>

@@ -11,6 +11,31 @@
     <link rel="stylesheet" href="~/css/styles.css">
   </head>
   <body>
+    <nav class="navbar navbar-expand-lg" style="background-color: rgb(142, 218, 218);">
+  <a class="navbar-brand" href="/"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="/" style="color: green;">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/Doctors" style="color: green;" >Doctors</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/Specialties" style="color: green;">Specialty</a>
+      </li>
+            <li class="nav-item">
+        <a class="nav-link" href="/Patients" style="color: green;">Patients</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+  <div id="main-text">
     @RenderBody()
+  </div>
+    @await Html.PartialAsync("Footer")
   </body>
 </html>

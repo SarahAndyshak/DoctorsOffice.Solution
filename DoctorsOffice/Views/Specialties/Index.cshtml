@@ -4,7 +4,7 @@
 
 @using DoctorsOffice.Models;
 
-<h1>specialties</h1>
+<h1>Specialties</h1>
 
 @if (@Model.Count == 0)
 {
@@ -18,6 +18,8 @@
   }
 </ul>
 
-<p>@Html.ActionLink("Add new specialty", "Create")</p>
-<p>@Html.ActionLink("Add new Doctor", "Create", "Doctors")</p>
-<p>@Html.ActionLink("Home", "Index", "Home")</p>
+<br>
+<div id="nav-links">
+  <p>@Html.ActionLink("Add new specialty", "Create") | @Html.ActionLink("Add new Doctor", "Create", "Doctors")</p>
+  <!-- <p>@Html.ActionLink("Home", "Index", "Home")</p> -->
+</div>

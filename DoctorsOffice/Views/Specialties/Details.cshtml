@@ -29,8 +29,10 @@ else
   }
   </ul>
 }
-<p>@Html.ActionLink("Back to specialties", "Index")</p>
-<p>@Html.ActionLink("Edit Specialty", "Edit", new { id = Model.SpecialtyId })</p>
-<p>@Html.ActionLink("Delete Specialty", "Delete", new { id = Model.SpecialtyId })</p>
-<p>@Html.ActionLink("Add new doctor", "Create", "Doctors")</p>
-<p>@Html.ActionLink("Home", "Index", "Home")</p>
+
+<br>
+<div id="nav-links">
+  <p>@Html.ActionLink("Edit Specialty", "Edit", new { id = Model.SpecialtyId }) | @Html.ActionLink("Delete Specialty", "Delete", new { id = Model.SpecialtyId }) | @Html.ActionLink("Add new doctor", "Create", "Doctors")</p>
+  <p>@Html.ActionLink("Back to List of Specialties", "Index")</p>
+  <!-- <p>@Html.ActionLink("Home", "Index", "Home")</p> -->
+</div>
