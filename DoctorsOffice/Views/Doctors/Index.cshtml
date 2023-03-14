@@ -15,7 +15,12 @@ else
 {
   @foreach(Doctor doctor in Model)
   {
-    <li>@Html.ActionLink($"{doctor.Name}", "Details", new { id = doctor.DoctorId }) | </li>
+    <li>@Html.ActionLink($"{doctor.Name}", "Details", new { id = doctor.DoctorId }) | 
+      @foreach(DoctorSpecialty join in doctor.JoinEntities2)
+      {
+        @Html.ActionLink($"{join.Specialty.Name} + ", "Details", "Specialties", new {id = join.Specialty.SpecialtyId} )
+      }
+    </li>
   }
 }
 
@@ -24,8 +29,6 @@ else
   <p>@Html.ActionLink("Add new doctor", "Create")</p>
   <img src="https://images.pexels.com/photos/2672630/pexels-photo-2672630.jpeg" alt="docs" width="25%">
 </div>
-
-
 
 
 <!-- <p>@Html.ActionLink("Back home", "Index", "Home")</p> -->

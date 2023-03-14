@@ -17,10 +17,11 @@ namespace DoctorsOffice.Controllers
     }
     public ActionResult Index()
     {
-      // List<Doctor> model = _db.Doctors
-      //                       .Include(doctor => doctor.Specialty)
-      //                       .ToList();
-      return View(_db.Doctors.ToList());
+      List<Doctor> model = _db.Doctors
+                            .Include(doctor => doctor.JoinEntities2)
+                            .ThenInclude(join => join.Specialty)
+                            .ToList();
+      return View(model);
     }
     public ActionResult Create()
     {
